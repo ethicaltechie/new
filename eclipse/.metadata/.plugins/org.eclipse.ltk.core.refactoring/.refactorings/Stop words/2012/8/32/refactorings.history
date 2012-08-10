@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete 3 element(s) from project &apos;Stop words&apos;&#x0A;- Original project: &apos;Stop words&apos;&#x0A;- Original elements:&#x0A;     WordCount.java&#x0A;     WordCountMapper.java&#x0A;     WordCountReducer.java" description="Delete elements" element1="WordCountReducer.java" element2="WordCount.java" element3="WordCountMapper.java" elements="0" flags="589830" id="org.eclipse.jdt.ui.delete" resources="3" stamp="1344339529731" subPackages="false" version="1.0"/>
+</session>

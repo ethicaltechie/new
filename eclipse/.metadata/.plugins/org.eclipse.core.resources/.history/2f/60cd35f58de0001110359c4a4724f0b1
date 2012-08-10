@@ -1,0 +1,25 @@
+import java.io.*;
+
+public class Test  {
+  public static void main(String [] args){
+  try{
+  BufferedReader object = new BufferedReader(
+  new InputStreamReader(System.in));
+  System.out.println("Enter number");
+  int num= Integer.parseInt(object.readLine());
+  int a=num/4;
+  if(a==0)
+  {
+	  System.out.println("Leap");
+  }
+  else
+  {
+	  System.out.println("Not");
+  }
+  
+  }
+  catch(Exception e){
+  System.out.println("Out of range!");
+  }
+  }
+} 

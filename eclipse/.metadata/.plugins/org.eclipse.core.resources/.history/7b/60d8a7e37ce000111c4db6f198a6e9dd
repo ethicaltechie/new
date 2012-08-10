@@ -1,0 +1,27 @@
+import java.io.*;
+import java.util.*;
+
+public class Test {
+
+	public static void main(String[] args)
+	{
+		try
+		{
+		int a,b,c=1;
+     	BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+     	
+     	System.out.println("Enter the first value");
+     	a=Integer.parseInt(br.readLine());
+     	for(b=0;b<a;b++)
+     	{
+     		c=c*b;
+     	}
+     	System.out.println(b);
+		}
+		catch(Exception e)
+		{
+		
+		}
+		
+	}
+}

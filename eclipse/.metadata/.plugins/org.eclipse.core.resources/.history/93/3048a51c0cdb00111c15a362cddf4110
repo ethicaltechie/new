@@ -1,0 +1,107 @@
+// Decompiled by DJ v3.12.12.96 Copyright 2011 Atanas Neshkov  Date: 7/31/2012 5:59:22 PM
+// Home Page: http://members.fortunecity.com/neshkov/dj.html  http://www.neshkov.com/dj.html - Check often for new version!
+// Decompiler options: packimports(3) 
+// Source File Name:   WordCount.java
+
+package org.apache.hadoop.examples;
+
+import java.io.IOException;
+import java.io.PrintStream;
+import java.util.Iterator;
+import java.util.StringTokenizer;
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.*;
+import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+import org.apache.hadoop.util.GenericOptionsParser;
+
+public class WordCount
+{
+    public static class IntSumReducer extends Reducer
+    {
+
+        public void reduce(Text key, Iterable values, org.apache.hadoop.mapreduce.Reducer.Context context)
+            throws IOException, InterruptedException
+        {
+            int sum = 0;
+            for(Iterator i$ = values.iterator(); i$.hasNext();)
+            {
+                IntWritable val = (IntWritable)i$.next();
+                sum += val.get();
+            }
+
+            result.set(sum);
+            context.write(key, result);
+        }
+
+        public volatile void reduce(Object x0, Iterable x1, org.apache.hadoop.mapreduce.Reducer.Context x2)
+            throws IOException, InterruptedException
+        {
+            reduce((Text)x0, x1, x2);
+        }
+
+        private IntWritable result;
+
+        public IntSumReducer()
+        {
+            result = new IntWritable();
+        }
+    }
+
+    public static class TokenizerMapper extends Mapper
+    {
+
+        public void map(Object key, Text value, org.apache.hadoop.mapreduce.Mapper.Context context)
+            throws IOException, InterruptedException
+        {
+            for(StringTokenizer itr = new StringTokenizer(value.toString()); itr.hasMoreTokens(); context.write(word, one))
+                word.set(itr.nextToken());
+
+        }
+
+        public volatile void map(Object x0, Object x1, org.apache.hadoop.mapreduce.Mapper.Context x2)
+            throws IOException, InterruptedException
+        {
+            map(x0, (Text)x1, x2);
+        }
+
+        private static final IntWritable one = new IntWritable(1);
+        private Text word;
+
+
+        public TokenizerMapper()
+        {
+            word = new Text();
+        }
+    }
+
+
+    public WordCount()
+    {
+    }
+
+    public static void main(String args[])
+        throws Exception
+    {
+        Configuration conf = new Configuration();
+        String otherArgs[] = (new GenericOptionsParser(conf, args)).getRemainingArgs();
+        if(otherArgs.length != 2)
+        {
+            System.err.println("Usage: wordcount <in> <out>");
+            System.exit(2);
+        }
+        Job job = new Job(conf, "word count");
+        job.setJarByClass(org/apache/hadoop/examples/WordCount);
+        job.setMapperClass(org/apache/hadoop/examples/WordCount$TokenizerMapper);
+        job.setCombinerClass(org/apache/hadoop/examples/WordCount$IntSumReducer);
+        job.setReducerClass(org/apache/hadoop/examples/WordCount$IntSumReducer);
+        job.setOutputKeyClass(org/apache/hadoop/io/Text);
+        job.setOutputValueClass(org/apache/hadoop/io/IntWritable);
+        FileInputFormat.addInputPath(job, new Path(otherArgs[0]));
+        FileOutputFormat.setOutputPath(job, new Path(otherArgs[1]));
+        System.exit(job.waitForCompletion(true) ? 0 : 1);
+    }
+}

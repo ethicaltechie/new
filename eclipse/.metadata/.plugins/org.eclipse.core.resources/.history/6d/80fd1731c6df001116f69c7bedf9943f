@@ -1,0 +1,33 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+
+public class Search_word {
+	 public void main(String[] args)
+	   { 
+	
+			 	InputStreamReader ir=new InputStreamReader(System.in);
+	                 	BufferedReader br=new BufferedReader(ir);
+	                
+	             		String sear;
+				String directory; 
+				try
+				{
+					System.out.println("Please enter a directory to search");
+					directory = br.readLine();
+	       			System.out.println("Enter the string:");
+	        		sear=br.readLine();
+				
+					Search f = new Search();  
+	                f.traverse(directory,sear);
+				}
+	 			catch(IOException e)
+				 {  
+					e.printStackTrace();                
+				 }
+				 
+			  } 
+	 
+
+}

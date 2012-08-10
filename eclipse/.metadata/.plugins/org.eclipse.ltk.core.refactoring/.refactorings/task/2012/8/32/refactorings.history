@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy 3 elements(s) to &apos;WordCount/src&apos;&#x0A;- Original project: &apos;task&apos;&#x0A;- Destination element: &apos;WordCount/src&apos;&#x0A;- Original elements:&#x0A;     WordCountReducer.java&#x0A;     WordCount.java&#x0A;     WordCountMapper.java" description="Copy compilation units" destination="=WordCount/src" element1="/src&lt;{WordCountReducer.java" element2="/src&lt;{WordCount.java" element3="/src&lt;{WordCountMapper.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1344341570255" units="3" version="1.0"/>
+</session>
